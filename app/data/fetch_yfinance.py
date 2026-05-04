@@ -75,7 +75,8 @@ class YFinanceFetcher(BaseFetcher):
         df.columns = [c.lower() for c in df.columns]
         df.index.name = "date"
         df = df.reset_index()
-        df["date"] = pd.to_datetime(df["date"]).dt.date
+        # Standarisasi ke pd.Timestamp (normalize ke midnight, tz-naive)
+        df["date"] = pd.to_datetime(df["date"]).dt.tz_localize(None).dt.normalize()
         df["ticker"] = ticker
 
         rename = {"adj close": "adj_close"}
@@ -117,19 +118,24 @@ def incremental_update(ticker: str, fetcher: BaseFetcher) -> pd.DataFrame:
     if existing.empty:
         start = default_start_date()
     else:
+        # Pastikan kolom date adalah Timestamp agar perbandingan string aman
         last_date = pd.to_datetime(existing["date"]).max()
         start = (last_date + timedelta(days=1)).strftime("%Y-%m-%d")
 
     end = default_end_date()
+    # Bandingkan sebagai string "YYYY-MM-DD" — aman, tidak ada Timestamp vs date
     if start >= end:
         logger.info(f"{ticker} already up to date")
         return existing
 
     new_data = fetcher.fetch_single(ticker, start, end)
     if new_data.empty:
+        # Tidak ada data baru — bisa libur bursa, bukan delisted
+        logger.debug(f"{ticker}: no new data {start} → {end}, keeping existing")
         return existing
 
     combined = pd.concat([existing, new_data], ignore_index=True)
-    combined = combined.drop_duplicates(subset=["date", "ticker"]).sort_values("date")
+    combined["date"] = pd.to_datetime(combined["date"]).dt.tz_localize(None).dt.normalize()
+    combined = combined.drop_duplicates(subset=["date", "ticker"]).sort_values("date").reset_index(drop=True)
     save_raw(ticker, combined)
     return combined
