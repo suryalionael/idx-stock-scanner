@@ -1,0 +1,18 @@
+.env
+__pycache__/
+*.py[cod]
+*.pyo
+.DS_Store
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Data files — tidak di-commit ke repo
+data/raw/
+data/features/
+data/signals/
+data/backtest/

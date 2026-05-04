@@ -1,0 +1,56 @@
+# Signal Scoring Rules — edit threshold & weight tanpa menyentuh kode
+
+weights:
+  trend: 0.25
+  momentum: 0.25
+  breakout: 0.25
+  volume: 0.15
+  penalty: -0.10   # diterapkan sebagai pengurang dari total
+
+thresholds:
+  trend:
+    ma_full_alignment: 10     # MA20 > MA50 > MA200
+    ma_partial_alignment: 5   # MA20 > MA50 saja
+    slope_bonus: 2            # tambahan jika slope MA20 positif
+
+  momentum:
+    rsi_ideal_min: 40
+    rsi_ideal_max: 70
+    rsi_score_ideal: 5
+    macd_bullish_score: 3
+    roc_positive_score: 2
+
+  breakout:
+    pct_52w_high_strong: 0.95   # >95% dari 52w high → full score
+    pct_52w_high_mid: 0.85      # 85-95% → partial score
+    price_52w_score_full: 5
+    price_52w_score_mid: 2
+    atr_breakout_score: 5
+
+  volume:
+    vol_ratio_strong: 2.0       # volume > 2x rata-rata 20D → full score
+    vol_ratio_mid: 1.5          # 1.5–2x → partial
+    vol_score_full: 5
+    vol_score_mid: 3
+    obv_trend_score: 5
+
+  penalty:
+    rsi_overbought: 80
+    rsi_overbought_penalty: 5
+    low_volume_threshold: 1000000   # volume absolut minimum (unit lembar)
+    low_volume_penalty: 5
+    data_gap_penalty: 3
+
+classification:
+  breakout_candidate:
+    min_total: 7.5
+    min_breakout_score: 7.0
+    min_volume_score: 6.0
+  pre_breakout:
+    min_total: 5.5
+    min_trend_score: 5.0
+  watchlist:
+    min_total: 3.5
+  avoid:
+    max_total: 3.5
+    max_penalty: 8.0   # jika penalty > nilai ini → langsung Avoid

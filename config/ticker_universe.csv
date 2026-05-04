@@ -1,0 +1,31 @@
+ticker,name,sector,exchange,is_active,added_date
+BBCA.JK,Bank Central Asia,Finance,IDX,True,2024-01-01
+BBRI.JK,Bank Rakyat Indonesia,Finance,IDX,True,2024-01-01
+BMRI.JK,Bank Mandiri,Finance,IDX,True,2024-01-01
+TLKM.JK,Telkom Indonesia,Telecommunications,IDX,True,2024-01-01
+ASII.JK,Astra International,Automotive,IDX,True,2024-01-01
+UNVR.JK,Unilever Indonesia,Consumer Goods,IDX,True,2024-01-01
+ICBP.JK,Indofood CBP,Consumer Goods,IDX,True,2024-01-01
+INDF.JK,Indofood Sukses Makmur,Consumer Goods,IDX,True,2024-01-01
+KLBF.JK,Kalbe Farma,Healthcare,IDX,True,2024-01-01
+GOTO.JK,GoTo Gojek Tokopedia,Technology,IDX,True,2024-01-01
+ANTM.JK,Aneka Tambang,Mining,IDX,True,2024-01-01
+PTBA.JK,Bukit Asam,Mining,IDX,True,2024-01-01
+ADRO.JK,Adaro Energy,Energy,IDX,True,2024-01-01
+INCO.JK,Vale Indonesia,Mining,IDX,True,2024-01-01
+MDKA.JK,Merdeka Copper Gold,Mining,IDX,True,2024-01-01
+SMGR.JK,Semen Indonesia,Industrial,IDX,True,2024-01-01
+CPIN.JK,Charoen Pokphand Indonesia,Consumer Goods,IDX,True,2024-01-01
+MNCN.JK,Media Nusantara Citra,Media,IDX,True,2024-01-01
+ERAA.JK,Erajaya Swasembada,Retail,IDX,True,2024-01-01
+EXCL.JK,XL Axiata,Telecommunications,IDX,True,2024-01-01
+AAPL,Apple Inc,Technology,NASDAQ,True,2024-01-01
+MSFT,Microsoft Corporation,Technology,NASDAQ,True,2024-01-01
+GOOGL,Alphabet Inc,Technology,NASDAQ,True,2024-01-01
+AMZN,Amazon.com,Consumer Discretionary,NASDAQ,True,2024-01-01
+NVDA,NVIDIA Corporation,Technology,NASDAQ,True,2024-01-01
+META,Meta Platforms,Technology,NASDAQ,True,2024-01-01
+TSLA,Tesla Inc,Automotive,NASDAQ,True,2024-01-01
+JPM,JPMorgan Chase,Finance,NYSE,True,2024-01-01
+JNJ,Johnson & Johnson,Healthcare,NYSE,True,2024-01-01
+XOM,Exxon Mobil,Energy,NYSE,True,2024-01-01
