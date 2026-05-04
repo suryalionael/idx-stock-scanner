@@ -58,6 +58,9 @@ class YFinanceFetcher(BaseFetcher):
                 df = raw.copy()
             else:
                 df = raw[ticker].copy()
+            # Drop ticker-level from MultiIndex after slicing (yfinance >= 0.2.x)
+            if isinstance(df.columns, pd.MultiIndex):
+                df.columns = df.columns.get_level_values(0)
             if df.empty:
                 return None
             return self._normalize(df, ticker)
@@ -66,6 +69,9 @@ class YFinanceFetcher(BaseFetcher):
 
     def _normalize(self, df: pd.DataFrame, ticker: str) -> pd.DataFrame:
         df = df.copy()
+        # yfinance >= 0.2.x returns MultiIndex columns for single-ticker downloads
+        if isinstance(df.columns, pd.MultiIndex):
+            df.columns = df.columns.get_level_values(0)
         df.columns = [c.lower() for c in df.columns]
         df.index.name = "date"
         df = df.reset_index()
